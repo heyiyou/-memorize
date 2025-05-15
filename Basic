@@ -1,0 +1,146 @@
+단계	JSP 파일	설명
+1️⃣	list.jsp	글 목록 페이지
+2️⃣	write.jsp	글 작성 폼
+3️⃣	write_proc.jsp	글 저장 처리
+4️⃣	read.jsp	글 상세보기
+5️⃣	edit.jsp	수정 폼
+6️⃣	edit_proc.jsp	수정 처리
+7️⃣	del.jsp 또는 del_proc.jsp	삭제 처리
+
+→ 이 구조는 JSP 게시판의 기본 골격이에요. 꼭 익혀두세요!
+
+ 2. 각 단계에서 자주 쓰는 코드 + 설명
+🟡 write.jsp (글 작성 폼)
+<form action="write_proc.jsp" method="post">
+  <input name="title" placeholder="제목">
+  <input name="id" placeholder="작성자">
+  <textarea name="text" placeholder="내용"></textarea>
+  <input type="submit" value="작성">
+</form>
+method="post"는 사용자 정보 보호 목적
+글 내용은 textarea로 받는 게 일반적
+
+
+
+🟡 write_proc.jsp (DB 저장 처리)
+<%
+request.setCharacterEncoding("UTF-8");  // 한글 처리
+String title = request.getParameter("title");
+String id = request.getParameter("id");
+String text = request.getParameter("text");
+
+Dao dao = new Dao();
+dto d = new Dto(title, id, text);
+dao.write(d);
+
+response.sendRedirect("list.jsp");  // 글 작성 후 목록으로 이동
+%>
+request.getParameter() → form 데이터 받기
+
+response.sendRedirect() → 리다이렉트
+
+
+
+
+
+🟡 list.jsp (글 목록 출력)
+<%
+Dao dao = new Dao();
+ArrayList<Dto> posts = dao.list("1");  // 1페이지라고 가정
+for (Dto d : posts) {
+%>
+  <a href="read.jsp?no=<%=d.no%>"><%=d.title%></a><br>
+<%
+}
+%>
+글 리스트를 DAO에서 받아서 반복 출력
+read.jsp?no=글번호 형식으로 글 읽기 링크 생성
+
+
+
+
+
+
+🟡 read.jsp (글 하나 보기)
+<%
+String no = request.getParameter("no");
+Dao dao = new Dao();
+Dto d = dao.read(no);
+%>
+<h2><%=d.title%></h2>
+<p>작성자: <%=d.id%></p>
+<p><%=d.text%></p>
+글 번호를 받아서 DAO의 read() 호출
+
+Dto 객체로부터 데이터 꺼내서 화면에 출력
+
+
+
+🟡 edit.jsp (수정 폼)
+<%
+String no = request.getParameter("no");
+Dao dao = new Dao();
+Dto d = dao.read(no);
+%>
+<form action="edit_proc.jsp" method="post">
+  <input type="hidden" name="no" value="<%=d.no%>">
+  <input name="title" value="<%=d.title%>">
+  <textarea name="text"><%=d.text%></textarea>
+  <input type="submit" value="수정">
+</form>
+
+
+
+
+
+🟡 edit_proc.jsp (DB 수정 처리)
+<%
+String no = request.getParameter("no");
+String title = request.getParameter("title");
+String text = request.getParameter("text");
+
+Dao dao = new Dao();
+Dto d = new Dto();
+d.title = title;
+d.text = text;
+
+dao.edit(d, no);
+response.sendRedirect("read.jsp?no=" + no);
+%>
+
+
+
+
+
+
+ 3. 꼭 외워야 하는 고정 코드 모음
+🔹 DB 연결 (Dao 클래스 내부 고정)
+Class.forName("com.mysql.cj.jdbc.Driver");
+con = DriverManager.getConnection(DB_URL, DB_ID, DB_PW);
+st = con.createStatement();
+
+
+
+🔹 입력값 받기 (POST 방식)
+request.setCharacterEncoding("UTF-8");
+String title = request.getParameter("title");
+
+
+
+🔹 DB 결과 받아서 리스트로 만들기
+ResultSet rs = st.executeQuery("SELECT * FROM board");
+while (rs.next()) {
+    posts.add(new Dto(...));
+}
+
+
+
+🔹 리다이렉트 (다음 페이지로 이동)
+response.sendRedirect("list.jsp");
+📝 요약
+구조는 쓰기 → 처리 → 리스트 → 보기 → 수정/삭제 순
+
+JSP + DAO + DTO 분리 구조로 코딩
+
+request.getParameter, URLEncoder, sendRedirect, ResultSet 등은 반복 숙달 필수
+
