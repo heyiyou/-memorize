@@ -24,16 +24,16 @@ method="post"는 사용자 정보 보호 목적
 
 🟡 write_proc.jsp (DB 저장 처리)
 <%
-request.setCharacterEncoding("UTF-8");  // 한글 처리
+request.setCharacterEncoding("UTF-8");  // 이건 한글 처리인데 직접 설정해서 바꾼거임 할려면 바꿔야함 
 String title = request.getParameter("title");
 String id = request.getParameter("id");
 String text = request.getParameter("text");
 
-Dao dao = new Dao();
+Dao dao = new Dao();                              // Cat cat = new Cat 설명임
 dto d = new Dto(title, id, text);
 dao.write(d);
 
-response.sendRedirect("list.jsp");  // 글 작성 후 목록으로 이동
+response.sendRedirect("list.jsp");  // 글 작성후 리스트로 이등하는 코드
 %>
 request.getParameter() → form 데이터 받기
 
