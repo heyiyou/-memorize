@@ -1,0 +1,174 @@
+용어들
+
+
+                                                                                                                                                                                           <괄호는 >꼭 닫을것
+
+오전 10:34 2025-03-25
+홓태그    <hr> 은 중앙선을 1개 만들수가 있음 
+
+<img src=" 사진 "> srcs는 사진을 넣는것   예)댕댕이  <img src="OIP.jpg">
+        
+
+= 속성이라는 이야기  태그 내 속성 값 예)    개 = 고양이 의 의미는 고양이를 개로 이동      src= 사진의 뜻   사진을 src로 이동해서 넣은것의 뜻
+
+
+<head> 태그안에 즉 머리에 <link rel="stylesheet" href="x.css"
+x.css 파일를 만들어서  body {  background-color: pink; }  를 넣으면 화면 색상을 바꿀수가 있다.
+
+
+텍스트 테그 
+가장 많이 쓰는 테스트 태그
+hn    예)  h1이면 
+<h1>나만의 홈페이지</h1>  이런 식으로 하면 나만의 홈페이지(글씨크기)가 커짐
+
+p테그   예) <P>롤</p>   <P>롤토 </p>    이렇게 하면 문단이 나눌수가 있음 
+
+
+
+<b>????</b>    ?? 에 넣어서 코드를 짜면 글씨가 찐해짐  
+
+
+<a>???/</a>    ???? 링크표서로 글씨 밑에 밑줄과 글씨 파란색
+멀티미디어 태그 
+<audio src="  링크   controls autoplay loop></audio>    바로 가기 버튼 만들기
+
+
+
+
+
+
+
+
+
+
+from 태그쓰는법      폼의 시작과 끝을 만듭니다 
+
+
+input      중요함!!!!!
+<input type="br"> 아이디 <input type="password"> 비밀번호
+        <input type="button" value="로그인">
+            
+  
+        <input type="button" value="회원가입">         <input type="button" value="비밀번호 찾기">
+
+
+
+여기서 <br>은 내리는 역할 창밑에 넣고 싶다 하면 넣으면됨
+
+text  
+
+예)
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="text">
+    </form>
+</body>
+</html>
+
+
+예) 안에 text라고 있는데 작은 창을 만들어서 적을 수있게 해줌
+
+
+오전 10:34 2025-03-26
+
+css  디자인 설정(프로그램 코드를 나누어 보기 편함) 꺠끗하게 할수가 있다.
+예) x.css 파일을 만들어서 한것                          화면 색상
+
+
+css 작성 룰 
+<link rel="stylesheet" href="css 파일 경로">
+link는 파일을 만들어서 적용 시키는 역할
+연동 시킨다고 생각하면됨 
+
+예)<link rel="stylesheet" href="x.css">    이거 head안으로 넣기
+
+
+
+단축어 
+윈도어+R  바로가기
+
+ctrl+alt+ shift   위/아래
+
+
+
+
+
+<img src="OIP.jpg">   사진 이미지 넣는 코드 img src
+
+
+
+
+
+<div id="x">
+        <div id="a">레드</div>
+        <div id="b">주황</div>
+        <div id="c">노랑</div>
+        <div id="d">초록</div>
+        <div id="e">파랑</div>
+
+div id 가장 많이씀 측정값을 주는것 쉽게 말하면 박스를 열어서 박스 안에 왼쪽 위에 글씨를 적는거 레드,주황은 그냥 이름임           
+  박스에 색깔 입히는것도 가능 그건 x.css를 써서 입력 
+
+x.css 입력
+#x {
+    display: flex;
+    height: 300px;
+}
+
+#a {
+    background-color: rgb(207, 112, 112);
+    width: 300px;
+}
+#b {
+    background-color: rgb(175, 141, 78);
+    width: 300px;
+}
+
+
+
+
+
+class 설명 
+이건 내가 정해놓은 명칭을 하는거 ( 아무거나 상관 없음 어떤 이름으로 했는지 알수 있게)
+clas를 설정하면 박스안에 색상을 입히고 그 생각안에 내용 입력 
+예) <div class="vv">안녕</div>
+
+
+
+font-size
+
+
+단위
+em             대문자 너리를 기준으로 한후 비율값 지정
+rem            문서시작부분지정크기기준으로 한후 비율값 지정
+ex             소문자 x 축 높이 기준으로 한후 비율값 지정 
+px            모니터 1픽셀 기준 
+pt             포인트,일반 문서를 사용한다고 함
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
